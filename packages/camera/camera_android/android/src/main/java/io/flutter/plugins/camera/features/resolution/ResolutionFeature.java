@@ -123,7 +123,14 @@ public class ResolutionFeature extends CameraFeature<ResolutionPreset> {
       if (defaultVideoProfile != null) {
         return new Size(defaultVideoProfile.getWidth(), defaultVideoProfile.getHeight());
       }
-      return new Size(1280, 720);
+      switch (preset) {
+        case medium:
+            return new Size(720, 480);
+        case low:
+            return new Size(320, 240);
+        default:
+            return new Size(1280, 720);
+      }
     } else {
       @SuppressWarnings("deprecation")
       CamcorderProfile profile =
@@ -247,7 +254,14 @@ public class ResolutionFeature extends CameraFeature<ResolutionPreset> {
       if (defaultVideoProfile != null) {
         captureSize = new Size(defaultVideoProfile.getWidth(), defaultVideoProfile.getHeight());
       }
-      captureSize = new Size(1280, 720);
+      switch (resolutionPreset) {
+        case medium:
+            captureSize = new Size(720, 480);
+        case low:
+            captureSize =  new Size(320, 240);
+        default:
+            captureSize = new Size(1280, 720);
+      }
     } else {
       @SuppressWarnings("deprecation")
       CamcorderProfile camcorderProfile =
